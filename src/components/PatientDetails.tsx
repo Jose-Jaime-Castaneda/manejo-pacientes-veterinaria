@@ -7,7 +7,7 @@ type PatientDetailsProps = {
 
 export default function PatientDetails({ patient }: PatientDetailsProps) {
     return (
-        <div className=" mx-5 my-10 py-10 bg-white shadow-md rounded-xl">
+        <div className=" mx-5 my-10 px-5 py-10 bg-white shadow-md rounded-xl">
             <PatientDetailItem label="ID" value={patient.id} />
             <PatientDetailItem label="Nombre" value={patient.name} />
             <PatientDetailItem label="Prpietario" value={patient.caretaker} />
