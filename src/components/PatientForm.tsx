@@ -7,7 +7,6 @@ export default function PatientForm() {
 
     const Register = (data: DraftPatient) => {
         console.log(data);
-
     }
 
     return (
@@ -107,7 +106,7 @@ export default function PatientForm() {
                         id="symptoms"
                         className="w-full p-3  border border-gray-100"
                         placeholder="Síntomas del paciente"
-                        {...register('caretaker', {
+                        {...register('symptoms', {
                             required: 'Los síntomas son obligatorios'
                         })}
                     />
