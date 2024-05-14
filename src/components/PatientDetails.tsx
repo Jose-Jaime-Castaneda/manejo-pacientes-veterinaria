@@ -1,4 +1,3 @@
-import { usePatientStore } from "../store/store";
 import { Patient } from "../types";
 import PatientDetailItem from "./PatientDetailItem";
 
