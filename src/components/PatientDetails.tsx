@@ -10,9 +10,9 @@ export default function PatientDetails({ patient }: PatientDetailsProps) {
         <div className=" mx-5 my-10 py-10 bg-white shadow-md rounded-xl">
             <PatientDetailItem label="ID" value={patient.id} />
             <PatientDetailItem label="Nombre" value={patient.name} />
-            <PatientDetailItem label="Caretaker" value={patient.caretaker} />
-            <PatientDetailItem label="Email" value={patient.email} />
-            <PatientDetailItem label="Symptoms" value={patient.symptoms} />
+            <PatientDetailItem label="Prpietario" value={patient.caretaker} />
+            <PatientDetailItem label="Correo" value={patient.email} />
+            <PatientDetailItem label="Sintómas" value={patient.symptoms} />
             <PatientDetailItem label="Fecha de Alta" value={patient.date.toString()} />
         </div>
     );
