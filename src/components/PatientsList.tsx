@@ -17,7 +17,7 @@ export default function PatientsList() {
                     </p>
 
                     {patients.map((patient) => (
-                        <PatientDetails key={patient.id} />
+                        <PatientDetails key={patient.id} patient={patient} />
                     ))}
                 </>
             ) : (
