@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { v4 as uuidv4 } from "uuid";
 import { DraftPatient, Patient } from "../types";
 
@@ -13,39 +13,46 @@ type PatientState = {
 };
 
 export const usePatientStore = create<PatientState>()(
-  devtools((set) => ({
-    patients: [],
-    activeID: "",
-
-    addPatient: (data) => {
-      const newPatient = { ...data, id: uuidv4() };
-
-      set((state) => ({
-        patients: [...state.patients, newPatient],
-      }));
-    },
-
-    deletePatient: (id) => {
-      set((state) => ({
-        patients: state.patients.filter((patient) => patient.id !== id),
-      }));
-    },
-
-    getPatientById: (id) => {
-      set(() => ({
-        activeID: id,
-      }));
-    },
-
-    updatePatient: (data) => {
-      set((state) => ({
-        patients: state.patients.map((patient) =>
-          patient.id === state.activeID
-            ? { id: state.activeID, ...data }
-            : patient
-        ),
+  devtools(
+    persist(
+      (set) => ({
+        patients: [],
         activeID: "",
-      }));
-    },
-  }))
+
+        addPatient: (data) => {
+          const newPatient = { ...data, id: uuidv4() };
+
+          set((state) => ({
+            patients: [...state.patients, newPatient],
+          }));
+        },
+
+        deletePatient: (id) => {
+          set((state) => ({
+            patients: state.patients.filter((patient) => patient.id !== id),
+          }));
+        },
+
+        getPatientById: (id) => {
+          set(() => ({
+            activeID: id,
+          }));
+        },
+
+        updatePatient: (data) => {
+          set((state) => ({
+            patients: state.patients.map((patient) =>
+              patient.id === state.activeID
+                ? { id: state.activeID, ...data }
+                : patient
+            ),
+            activeID: "",
+          }));
+        },
+      }),
+      {
+        name: "patient-storage",
+      }
+    )
+  )
 );
